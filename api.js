@@ -115,8 +115,12 @@ export function like({ id, token }) {
       Authorization: token,
     }
   }).then((response) => {
+    if (response.status === 401) {
+      alert("Авторизуйтесь");
+      throw new Error("Нет авторизации");
+    }
     return response.json();
-  })
+  });
 }
 
 export function disLike({ id, token }) {
@@ -126,6 +130,10 @@ export function disLike({ id, token }) {
       Authorization: token,
     }
   }).then((response) => {
+    if (response.status === 401) {
+      alert("Авторизуйтесь");
+      throw new Error("Нет авторизации");
+    }
     return response.json();
-  })
+  });
 }

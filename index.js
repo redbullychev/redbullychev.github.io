@@ -78,14 +78,12 @@ export const goToPage = (newPage, data) => {
           posts = newPosts;
           return renderApp();
         })
-        .catch((error) => {
-          console.error(error);
+        .catch(() => {
           goToPage(POSTS_PAGE);
         });     
     }
 
     if (newPage === USER_LIKE_ACTION) {
-      console.log("111");
       return getUserPosts({token: getToken(), userId: data})
       // TODO: реализовать получение постов юзера из API
       .then((responseData) => {
@@ -94,6 +92,9 @@ export const goToPage = (newPage, data) => {
       }).then(() =>{
         return renderApp();
       })
+      .catch(() => {
+        goToPage(USER_POSTS_PAGE);
+      });    
     }
 
     if (newPage === USER_POSTS_PAGE) {
